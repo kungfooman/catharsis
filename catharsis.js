@@ -143,8 +143,11 @@ class Catharsis {
         typeExpr = typeExpr.replace(/[\r\n]/g, '')
             .replace(/\s+/g, ' ')
             .trim();
-
-        return cachedParse(typeExpr, options);
+        try {
+            return cachedParse(typeExpr, options);
+        } catch (e) {
+            return cachedParse('*', options);
+        }
     }
 
     stringify(parsedType, options) {
